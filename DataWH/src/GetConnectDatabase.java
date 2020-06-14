@@ -8,7 +8,7 @@ public class GetConnectDatabase implements ConnectionPool {
 
 	}
 
-	public Connection getConnectionSql() throws SQLException {
+	public Connection getConnectionSql(String url, String username, String pass) throws SQLException {
 
 		String hostName = "localhost";
 		String dbName = "users";
@@ -16,6 +16,8 @@ public class GetConnectDatabase implements ConnectionPool {
 		String password = "";
 		String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName
 				+ "?useUnicode=true&characterEncoding=utf-8";
+		// String connectionURL =
+		// "jdbc:mysql://localhost:3306/users?useUnicode=true&characterEncoding=utf-8";
 		Connection conn = DriverManager.getConnection(connectionURL, userName, password);
 		return conn;
 	}
@@ -23,7 +25,7 @@ public class GetConnectDatabase implements ConnectionPool {
 	public static void main(String[] args) {
 		ConnectionPool cp = new GetConnectDatabase();
 		try {
-			Connection con = cp.getConnectionSql();
+			Connection con = cp.getConnectionSql(null,null,null);
 			if (con != null) {
 				System.out.println(con);
 			} else {
